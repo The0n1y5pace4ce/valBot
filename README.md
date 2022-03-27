@@ -28,3 +28,8 @@
 # [My Discord server](https://discord.gg/AM787M44au)
 
 # [INVITE LINK SOON]()
+
+# LANGUAGES
+> ``` 
+> Japanese is currently the only language, and is still in translation, more languages will come soon!
+> ```
