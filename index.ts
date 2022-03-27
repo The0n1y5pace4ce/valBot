@@ -17,9 +17,6 @@ const client = new DiscordJS.Client({
 })
 
 client.on('ready', async () => {
-  // await mongoose.connect(process.env.MONGO_URI || '', {
-  //   keepAlive: true,
-  // })
 
   new WOKCommands(client, {
     commandsDir: path.join(__dirname, 'commands'),
@@ -58,7 +55,8 @@ client.on('ready', async () => {
     {
       name: 'Info',
       emoji: 'ℹ'
-    }
+    },
+
   ])
 
 
