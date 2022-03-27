@@ -1,4 +1,4 @@
-# Jebediah Kerman
+# valBot
 > * This is a bot made by TheSpaceAce#2107, it is a multi guild bot, utilizing mongoDB and WOKCommands. It is written in typescript.
 > * It is made by TheSpaceAce#2107 on Discord
 
