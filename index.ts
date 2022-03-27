@@ -50,6 +50,14 @@ client.on('ready', async () => {
     {
       name: 'Configuration',
       emoji: '<:configuration:957567767228346408>'
+    },
+    {
+      name: 'Levelling',
+      emoji: '⏫'
+    },
+    {
+      name: 'Info',
+      emoji: 'ℹ'
     }
   ])
 
