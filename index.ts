@@ -36,7 +36,8 @@ client.on('ready', async () => {
   .setCategorySettings([
     {
       name: 'Testing',
-      emoji: '🔶'
+      emoji: '🔶',
+      hidden: true
     },
     {
       name: 'Utility',
@@ -44,7 +45,11 @@ client.on('ready', async () => {
     },
     {
       name: 'Moderation',
-      emoji: '🔨'
+      emoji: '<:moderation:957567782197788722>'
+    },
+    {
+      name: 'Configuration',
+      emoji: '<:configuration:957567767228346408>'
     }
   ])
 
