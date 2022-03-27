@@ -11,7 +11,7 @@ export default {
         .setTitle('Info for valBot')
         .addFields(
             { name: 'Creator', value: 'The creator of the bot is TheSpaceAce#2107'},
-            { name: 'Emojis', value: 'Most emojis from the bot can be found [here](https://discord.gg/icons)'},
+            { name: 'Emojis', value: 'Most emojis from the bot can be found [here](https://discord.gg/9AtkECMX2P)'},
             { name: 'Packages used', value: 'Axios\nCanvas\ndiscord-xp\ndiscord.js\ndotenv\nmongoose\nms\nWOKCommands'},
             { name: 'Contributors', value: 'Currently, the only contributor is the owner, TheSpaceAce#2107. If you would wish to contribute, please dm TheSpaceAce#2107!'},
         )
