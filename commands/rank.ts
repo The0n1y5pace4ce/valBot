@@ -2,6 +2,7 @@ import { ICommand } from "wokcommands";
 import Levels from 'discord-xp'
 import { User, MessageAttachment } from "discord.js";
 import { Canvas, createCanvas, loadImage } from 'canvas'
+import { Canvacord, Rank } from "canvacord";
 
 export default {
     category: 'Levelling',
@@ -21,54 +22,30 @@ export default {
             required: true,
         }
     ],
-    callback: async ({ client, interaction, message, member, text }) => {
-        const applyText = (canvas: Canvas , text: string) => {
-            const context = canvas.getContext('2d');
-            let fontSize = 70;
-        
-            do {
-                context.font = `${fontSize -= 10}px sans-serif`;
-            } while (context.measureText(text).width > canvas.width - 300);
-        
-            return context.font;
-        };
-        const user = interaction.options.getUser("user");
-        const levels = await Levels.fetch(user.id, interaction.guildId);
-        if (!levels) {
-          return interaction.reply("User has no xp.");
+    callback: async ({ interaction, client, message }) => {
+        const target = interaction.options.getUser('user')
+        const user = await Levels.fetch(target.id, interaction.guild.id, true);
+        if(!user) {
+            return interaction.reply({content: 'User has no XP', ephemeral: true})
         }
-        
-        const canvas = createCanvas(700, 250);
-		const context = canvas.getContext('2d');
 
-		const background = await loadImage('./images/back.jpg');
-		context.drawImage(background, 0, 0, canvas.width, canvas.height);
+        await interaction.deferReply()
 
-		context.strokeStyle = '#0099ff';
-		context.strokeRect(0, 0, canvas.width, canvas.height);
+        const rank = new Rank()
+        .setAvatar(target.displayAvatarURL({format: 'png'}))
+        .setCurrentXP(user.xp)
+        .setCustomStatusColor('BLUE')
+        .setProgressBar('GREEN')
+        .setProgressBarTrack('BLURPLE')
+        .setLevel(user.level)
+        .setStatus("dnd", true, 4)
+        .setDiscriminator(target.discriminator)
+        .setUsername(target.username)
 
-		context.font = '28px sans-serif';
-		context.fillStyle = '#ffffff';
-		context.fillText(`XP: ${levels.xp}`, canvas.width / 2.5, canvas.height / 3.5);
-
-        context.font = '28px sans-serif';
-        context.fillStyle = '#ffffff';
-        context.fillText(`Level: ${levels.level}`, canvas.width / 2.5, canvas.height / 2.5)
-
-		context.font = applyText(canvas, `${user.username}`);
-		context.fillStyle = '#ffffff';
-		context.fillText(`${user.username}`, canvas.width / 2.2, canvas.height / 1.2);
-
-		context.beginPath();
-		context.arc(125, 125, 100, 0, Math.PI * 2, true);
-		context.closePath();
-		context.clip();
-
-		const avatar = await loadImage(user.displayAvatarURL({ format: 'jpg' }));
-		context.drawImage(avatar, 25, 25, 200, 200);
-
-		const attachment = new MessageAttachment(canvas.toBuffer(), 'profile-image.png');
-
-		interaction.reply({ files: [attachment] });
-    }
+        rank.build({fontX: 'arial'})
+            .then(data => {
+        const attachment = new MessageAttachment(data, "RankCard.png");
+        interaction.editReply({ files: [attachment]})
+        })
+    } 
 } as ICommand
