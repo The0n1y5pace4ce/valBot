@@ -56,6 +56,10 @@ client.on('ready', async () => {
       name: 'Info',
       emoji: 'ℹ'
     },
+    {
+      name: 'Fun',
+      emoji: '😊'
+    }
 
   ])
 
