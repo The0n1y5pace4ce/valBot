@@ -1,7 +1,6 @@
 import { ICommand } from "wokcommands";
 import Levels from 'discord-xp'
-import { User, MessageAttachment } from "discord.js";
-import { Canvas, createCanvas, loadImage } from 'canvas'
+import { MessageAttachment } from "discord.js";
 import { Canvacord, Rank } from "canvacord";
 
 export default {
@@ -24,7 +23,7 @@ export default {
     ],
     callback: async ({ interaction, client, message }) => {
         const target = interaction.options.getUser('user')
-        const user = await Levels.fetch(target.id, interaction.guild.id, true);
+        const user = await Levels.fetch(target.id, interaction.guild.id || message.guild.id, true)
         if(!user) {
             return interaction.reply({content: 'User has no XP', ephemeral: true})
         }
@@ -38,9 +37,13 @@ export default {
         .setProgressBar('GREEN')
         .setProgressBarTrack('BLURPLE')
         .setLevel(user.level)
-        .setStatus("dnd", true, 4)
+        .setStatus("online", true, 4)
         .setDiscriminator(target.discriminator)
         .setUsername(target.username)
+        .setRequiredXP(Levels.xpFor(user.level + 1))
+        .setCustomStatusColor('RED')
+        .setOverlay('#51AD5C', 0.7)
+        .renderEmojis(false)
 
         rank.build({fontX: 'arial'})
             .then(data => {

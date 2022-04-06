@@ -15,7 +15,7 @@ export default (client: Client) => {
         if (hasLeveledUp) {
           const user = await Levels.fetch(message.author.id, message.guild.id);
           message.channel.send({
-            content: `${message.author}, congratulations! You have leveled up to **${user.level}**.`,
+            content: `${message.author}, congratulations! You have leveled up to level **${user.level}**.`,
           });
         }
     })

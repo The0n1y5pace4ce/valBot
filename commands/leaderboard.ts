@@ -22,8 +22,9 @@ export default {
         const embed = new MessageEmbed()
         .setTitle('Leaderboard for this guild')
         .setDescription(`${lb.join("\n")}`)
-        .setColor('RANDOM')
+        .setColor('DARK_BUT_NOT_BLACK')
         .setAuthor({name: `${guild.name}`, iconURL: 'https://cdn.discordapp.com/emojis/859424401971609600.webp?size=96&quality=lossless'})
+        .setFooter({text: `Requested by ${interaction.user.tag}`, iconURL: `${interaction.user.displayAvatarURL({format: 'png'})}`})
 
         return interaction.reply({embeds: [embed]});
     }

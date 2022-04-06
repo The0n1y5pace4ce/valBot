@@ -68,7 +68,12 @@ export default {
                 value: 'delete'
             },
             {
-
+                name: 'jail',
+                value: 'jail'
+            },
+            {
+                name: 'affect',
+                value: 'affect'
             }
         ]
     }],
@@ -188,6 +193,16 @@ export default {
                 interaction.reply({ files: [attachment]})
             }
             break;
+            case 'jail' : {
+                const avatar = target.displayAvatarURL({ format: 'png'})
+
+                const image = await Canvacord.jail(avatar, true)
+
+                const attachment = new MessageAttachment(image, 'jail.gif')
+
+                interaction.reply({ files: [attachment]})
+            }
+            break;
             case 'delete' : {
                 const avatar = target.displayAvatarURL({ format: 'png'})
 
@@ -198,16 +213,16 @@ export default {
                 interaction.reply({ files: [attachment]})
             }
             break;
-            case 'jail' : {
+            case 'affect' : {
                 const avatar = target.displayAvatarURL({ format: 'png'})
 
-                const image = await Canvacord.jail(avatar, true)
+                const image = await Canvacord.affect(avatar)
 
-                const attachment = new MessageAttachment(image, 'jail.gif')
+                const attachment = new MessageAttachment(image, 'affect.gif')
 
                 interaction.reply({ files: [attachment]})
             }
-
+            break;
         }
     }
 } as ICommand
