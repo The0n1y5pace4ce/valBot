@@ -44,6 +44,7 @@ export default {
         .setCustomStatusColor('RED')
         .setOverlay('#51AD5C', 0.7)
         .renderEmojis(false)
+        .setBackground('IMAGE', './images/download.jpeg')
 
         rank.build({fontX: 'arial'})
             .then(data => {
