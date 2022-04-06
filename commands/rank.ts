@@ -42,7 +42,6 @@ export default {
         .setUsername(target.username)
         .setRequiredXP(Levels.xpFor(user.level + 1))
         .setCustomStatusColor('RED')
-        .setOverlay('#51AD5C', 0.7)
         .renderEmojis(false)
         .setBackground('IMAGE', './images/download.jpeg')
 
