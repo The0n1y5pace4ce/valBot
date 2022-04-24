@@ -7,11 +7,7 @@ export default {
     description: 'Timeouts a member',
     slash: true,
     testOnly: true,
-
-    permissions: ['MANAGE_ROLES'], // new permission so use this
-
-
-    // pass ur options
+    permissions: ['MANAGE_ROLES'],
     options: [
         {
             name: 'user',

@@ -17,6 +17,7 @@ const client = new DiscordJS.Client({
 })
 
 client.on('ready', async () => {
+  mongoose.connect(process.env.MONGO_URI)
 
   new WOKCommands(client, {
     commandsDir: path.join(__dirname, 'commands'),
